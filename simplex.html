@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Optimal solution finder</title>
+    <link rel="stylesheet" href="simplex.css">
+
+</head>
+
+
+<body>
+
+    <!-- <div class="left-side"> 
+
+    </div>
+
+    <div class="right-side"> 
+
+
+    </div> -->
+    
+    <div class="vertical"> 
+
+        
+        <h1 style="font-family: Verdana; text-align: center; text-decoration: underline;"> 
+            Optimal Solution Finder
+        </h1>
+        
+
+        <h3 style="text-align: center;"> (Linear Programming) </h3>
+
+        <hr>
+        
+
+        <p class="ps"> 
+            Given the number of equations and the number of constraints, 
+            the site will generate the optimal solution.
+
+            If there is more than one solution, the site will give you <b> one</b> valid solution.
+
+            <br> <br>
+
+            If all constraints are of type '&le;', and all right-hand side values are non-negative, then the site will use the <i> Simplex</i> algorithm, designed by <a href=
+            "https://en.wikipedia.org/wiki/George_Dantzig" target="_blank"> George Dantzig</a>, in 1947. <br> <br>
+
+            Otherwise, if some constraints are of type '&ge;' or '&equals;', and/or some right-hand side values are negative, then the site will use 
+            the <i> BigM</i> method. Click <a href="https://en.wikipedia.org/wiki/Big_M_method" target="_blank">here</a> for more information on it. <br><br>
+        </p>
+
+        <hr>
+
+        
+
+
+
+        <!-- Implementation of the algorithm here, but first, ask for user input-->
+
+        
+
+        <p class="ps">
+                Select the number of constraints: 
+                <select id="numEquations" onchange="handleChange()" style="width: 75px;"> 
+                    <option value="1"> 1</option>
+                    <option value="2"> 2</option>
+                    <option value="3" selected="selected"> 3</option>
+                    <option value="4"> 4</option>
+                    <option value="5"> 5</option>
+                    <option value="6"> 6</option>
+
+                </select>
+
+                <br><br>
+
+                Select the number of variables:   
+                <select id="numVariables" onchange="handleChange()" style="width: 75px;"> 
+                    <option value="1"> 1</option>
+                    <option value="2"> 2</option>
+                    <option value="3" selected="selected"> 3</option>
+                    <option value="4"> 4</option>
+                    <option value="5"> 5</option>
+                    <option value="6"> 6</option>
+
+                </select>
+
+                <br><br>
+
+                Select the type of function:
+                <select id="functionType" onchange="handleChangeFunctionType()" style="width: 85px;">
+                    <option value="Maximize" selected="selected"> Maximize</option>
+                    <option value="Minimize"> Minimize</option>
+                </select>
+
+
+        </p>
+
+        <hr>
+
+        <div id="maxOrMin" style="font-family: Verdana, Geneva, Tahoma, sans-serif;
+        font-weight: bold;
+        text-align: center;"> 
+        
+            MAXIMIZE <br><br>
+        
+        </div>
+
+        <div id="objective">
+
+            Z = <input class="vars2" id="x1O" type="number" value="4" onchange="handleChangeConstraint()"> x<sub>1</sub> + 
+            <input class="vars2" id="x2O" type="number" value="1" onchange="handleChangeConstraint()"> x<sub>2</sub> + 
+            <input class="vars2" id="x3O" type="number" value="4" onchange="handleChangeConstraint()"> x<sub>3</sub>
+
+            <br> <br>
+            
+        </div>
+
+        <p class="ps"> Subject to</p> <br>
+
+        <div id="equations" style="margin-left: 15%; margin-right: 15%; text-align: center;">
+
+            <input class="vars" id="x11" type="number" value="2" onchange="handleChangeConstraint()"> x<sub>1</sub> + 
+            <input class="vars" id="x21" type="number" value="1" onchange="handleChangeConstraint()"> x<sub>2</sub> + 
+            <input class="vars" id="x31" type="number" value="1" onchange="handleChangeConstraint()"> x<sub>3</sub> 
+            
+            <select id="ineq1" class="ineqs" onchange="handleChangeConstraint()">
+                <option value="lessOrEqual"> &le;</option>
+                <option value="equal"> &equals;</option>
+                <option value="greaterOrEqual"> &ge;</option>
+            </select>
+            
+            <input id="b1" style="width: 7%;" type="number" value="2" onchange="handleChangeConstraint()"> <br> <br>
+
+
+
+
+            <input class="vars" id="x12" type="number" value="1" onchange="handleChangeConstraint()"> x<sub>1</sub> + 
+            <input class="vars" id="x22" type="number" value="2" onchange="handleChangeConstraint()"> x<sub>2</sub> + 
+            <input class="vars" id="x32" type="number" value="3" onchange="handleChangeConstraint()"> x<sub>3</sub>
+
+            <select id="ineq2" class="ineqs" onchange="handleChangeConstraint()">
+                <option value="lessOrEqual"> &le;</option>
+                <option value="equal"> &equals;</option>
+                <option value="greaterOrEqual"> &ge;</option>
+            </select>
+
+            <input id="b2" style="width: 7%;" type="number" value="4" onchange="handleChangeConstraint()"> <br> <br>
+
+
+
+            
+
+            <input class="vars" id="x13" type="number" value="2" onchange="handleChangeConstraint()"> x<sub>1</sub> + 
+            <input class="vars" id="x23" type="number" value="2" onchange="handleChangeConstraint()"> x<sub>2</sub> + 
+            <input class="vars" id="x33" type="number" value="1" onchange="handleChangeConstraint()"> x<sub>3</sub>
+            
+            <select id="ineq3" class="ineqs" onchange="handleChangeConstraint()">
+                <option value="lessOrEqual"> &le;</option>
+                <option value="equal"> &equals;</option>
+                <option value="greaterOrEqual"> &ge;</option>
+            </select>
+            
+            <input id="b3" style="width: 7%;" type="number" value="8" onchange="handleChangeConstraint()"> <br> <br>
+
+        </div>
+
+
+
+        
+
+        <div id="noNeg" style="text-align: center;">x<sub>1</sub>, x<sub>2</sub>, x<sub>3</sub> &ge; 0 </div>
+
+        <br>
+
+        
+
+        <div id="buttons" style="text-align: center;">
+
+            <button id="calculateButton" style="font-weight: bold; cursor: pointer;" onclick="calculate2()"> Get Result and Steps</button>
+            <br> <br>
+
+        </div>
+
+        <br>
+        <hr>
+
+        
+        <div style="text-align: center; font-weight: bold; background-color: white;">
+            <output id="result">Result: <br></output>
+        </div>
+
+        
+        <hr>
+
+        <div id="steps">
+        </div>
+
+            
+        
+
+    </div>
+
+    <p class="ps">
+        <b>&copy; Thomas Patenaude, 2024. All rights reserved.</b>
+    </p>
+
+    
+
+
+    <script src="node_modules/fraction.js/fraction.min.js"></script>
+    <script src="changeDisplay.js"></script>
+    <script src="helperFunctionsSimplex.js"></script>
+    <script src="helperFunctionsBigM.js"></script>
+    <script src="simplex.js"></script>
+    <script src="bigMVariable.js"></script>
+    <script src="commonToBoth.js"></script>
+    <script src="showSimplexSteps.js"></script>
+    <script src="showBigMSteps.js"></script>
+    
+</body>
+</html>

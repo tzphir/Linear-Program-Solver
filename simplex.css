@@ -1,0 +1,132 @@
+body {
+
+    background-color: hsl(187, 19%, 65%);
+    font-family: sans-serif;
+    font-size: 16px;
+}
+
+hr {
+
+    color: black;
+    background-color: black;
+    height: 2px;
+    border: none;
+}
+
+.left-side, .right-side {
+    position: absolute;
+    height: 100%;
+    width: 16%; /* Adjust as needed */
+    background-color: transparent; /* Set your desired background color or image */
+}
+
+.left-side {
+    left: 0;
+}
+
+.right-side {
+    right: 0;
+}
+
+
+.vertical {
+
+    border-left: 2px solid black;
+    margin-left: 16%;
+
+    border-right: 2px solid black;
+    margin-right: 16%;
+
+    height: auto;
+    
+}
+
+
+.ps {
+
+    text-align: center;
+    font-family: sans-serif;
+    margin-left: 22%;
+    margin-right: 22%
+
+    
+}
+
+#objective {
+
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: bold;
+    text-align: center;
+}
+
+.vars {
+
+    width: 7%;
+}
+
+.vars2 {
+
+    width: 5%;
+}
+
+.ineqs {
+
+    background-color: rgb(175, 175, 175);
+    
+}
+
+
+
+#steps {
+
+    text-align: center;
+    background-color: white;
+}
+
+
+
+table {
+    /* border-collapse: collapse; */
+    width: 95%;
+    margin: auto;
+    table-layout: fixed;
+}
+
+/* Style for table cells */
+td {
+    border: 1px solid black;
+    /* padding: 10px; */
+    text-align: center;
+    height: 30px;
+    font-size: 15px;
+    white-space: nowrap; /* Prevent text wrapping */
+    overflow: hidden; /* Hide content that exceeds cell width */
+    text-overflow: ellipsis; /* Show ellipsis (...) for hidden text */
+}
+
+/* Style for table headings */
+th {
+    border: 1px solid black;
+    /* padding: 10px; */
+    text-align: center;
+    height: 30px;
+    background-color: lightgray;
+    font-size: 15px;
+    white-space: nowrap; /* Prevent text wrapping */
+    overflow: hidden; /* Hide content that exceeds cell width */
+    text-overflow: ellipsis; /* Show ellipsis (...) for hidden text */
+}
+
+.last_row {
+
+    border: 1px solid black;
+    /* padding: 10px; */
+    text-align: center;
+    height: 30px;
+    background-color: lightgray;
+    font-size: 15px;
+    white-space: nowrap; /* Prevent text wrapping */
+    overflow: hidden; /* Hide content that exceeds cell width */
+    text-overflow: ellipsis; /* Show ellipsis (...) for hidden text */
+
+}
